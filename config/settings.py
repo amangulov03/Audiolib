@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_filters',
 
     # apps
+    'account'
 ]
 
 MIDDLEWARE = [
@@ -146,7 +147,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS   = True
 # ACTIVATE_USERS_EMAIL = True
 
-# AUTH_USER_MODEL = 'account.CustomUser'
+AUTH_USER_MODEL = 'account.CustomUser'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -162,3 +163,6 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
