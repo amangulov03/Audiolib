@@ -25,7 +25,7 @@ from drf_yasg.views import get_schema_view
 schema_view = get_schema_view(
     openapi.Info(
         title="docs for front",
-        description="movies_api",
+        description="audiolibs_app",
         default_version='v1'
     )
 )
