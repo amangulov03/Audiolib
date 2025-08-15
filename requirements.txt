@@ -1,0 +1,10 @@
+djangorestframework # фреймвок
+djangorestframework-simplejwt # для регистрации и jwt токенов
+psycopg2-binary # для работы psql
+pillow # для изоображений
+python-decouple # для сокрытие данных
+drf_yasg # документация для front
+django-filter # фильтарция 
+redis # брокер задач 
+celery # таск менеджер 
+
