@@ -8,5 +8,6 @@ urlpatterns = [
     path('activate/', ActivateView.as_view()),
     path('login/', TokenObtainPairView.as_view()),
     path('forgot/', ForgotPasswordView.as_view()),
-    path('restore/', RestorePasswordView.as_view())
+    path('restore/', RestorePasswordView.as_view()),
+    path('google/', include('drf_social_oauth2.urls', namespace='drf')),
 ]

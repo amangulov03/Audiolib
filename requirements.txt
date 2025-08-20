@@ -8,3 +8,7 @@ django-filter # фильтарция
 redis # брокер задач 
 celery # таск менеджер 
 
+# OAuth + Social Auth
+social-auth-app-django
+django-oauth-toolkit
+drf-social-oauth2
