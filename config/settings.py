@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django_filters',
 
     # apps
-    'account'
+    'account',
+    'books'
 ]
 
 MIDDLEWARE = [
