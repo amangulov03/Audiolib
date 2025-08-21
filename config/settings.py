@@ -50,7 +50,8 @@ INSTALLED_APPS = [
 
     # apps
     'account',
-    'books'
+    'books',
+    'reviews'
 ]
 
 MIDDLEWARE = [
