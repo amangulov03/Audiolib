@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'drf_social_oauth2',     # интеграция с DRF
 
     # apps
-    'account'
+    'account',
+    'books'
 ]
 
 MIDDLEWARE = [
