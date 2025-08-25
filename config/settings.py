@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'oauth2_provider',       # django-oauth-toolkit
     'social_django',         # python-social-auth
     'drf_social_oauth2',     # интеграция с DRF
+    'corsheaders',
 
     # apps
     'account',
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -188,3 +190,5 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_CLIENT_ID')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_CLIENT_SECRET')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [ 'https://www.googleapis.com/auth/userinfo.email',
     'https://www.googleapis.com/auth/userinfo.profile', ]
+
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
