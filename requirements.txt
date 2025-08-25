@@ -12,3 +12,5 @@ celery # таск менеджер
 social-auth-app-django
 django-oauth-toolkit
 drf-social-oauth2
+
+django-cors-headers
