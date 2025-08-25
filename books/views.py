@@ -6,6 +6,8 @@ from rest_framework.filters import SearchFilter
 from django.db.models import Avg
 from .models import Genre, Book, ReadingProgress
 from .serializers import GenreSerializer, BookSerializer, ReadingProgressSerializer
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 
 
 class IsAuthenticatedForReadAndAdminForWrite(permissions.BasePermission):
@@ -50,6 +52,7 @@ class BookViewSet(viewsets.ModelViewSet):
         context['request'] = self.request
         return context
 
+    @method_decorator(cache_page(60 * 15, key_prefix="top_books")) 
     @action(detail=False, methods=['get'])
     def top(self, request):
         if not request.user.is_authenticated:
@@ -57,10 +60,10 @@ class BookViewSet(viewsets.ModelViewSet):
                 {"error": "Требуется авторизация"}, 
                 status=status.HTTP_403_FORBIDDEN
             )
-            
+
         books = Book.objects.annotate(
-            avg_rating=Avg('reviews__rating')
-        ).order_by('-avg_rating')[:10]
+            avg_rating=Avg("reviews__rating")
+        ).order_by("-avg_rating")[:10]
 
         serializer = self.get_serializer(books, many=True)
         return Response(serializer.data, status=200)

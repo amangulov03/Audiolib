@@ -14,3 +14,4 @@ django-oauth-toolkit
 drf-social-oauth2
 
 django-cors-headers
+django-redis

@@ -197,3 +197,13 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [ 'https://www.googleapis.com/auth/userinfo.em
     'https://www.googleapis.com/auth/userinfo.profile', ]
 
 CORS_ALLOWED_ORIGINS = ["http://localhost:5178"]
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://localhost:6379/1", 
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
