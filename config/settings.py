@@ -196,5 +196,4 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_CLIENT_SECRET')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [ 'https://www.googleapis.com/auth/userinfo.email',
     'https://www.googleapis.com/auth/userinfo.profile', ]
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
-
+CORS_ALLOWED_ORIGINS = ["http://localhost:5178"]
