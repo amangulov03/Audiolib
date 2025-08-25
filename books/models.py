@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+# from django.contrib.auth.models import User 
 
 FORMAT_CHOICES = [
     ('ebook', 'Электронная книга (PDF/EPUB)'),
@@ -37,4 +39,19 @@ class Book(models.Model):
         verbose_name = "Книга"
         verbose_name_plural = "Книги"
 
-# Create your models here.
+
+class ReadingProgress(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='reading_progress')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reading_progress')
+    last_position = models.FloatField(default=0.0, verbose_name="Последняя позиция (%)")
+    last_timecode = models.CharField(max_length=20, blank=True, verbose_name="Временная метка")
+    last_page = models.IntegerField(default=0, verbose_name="Последняя страница")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Обновлено")
+
+    class Meta:
+        unique_together = ['user', 'book']  # Одна запись на пользователя и книгу
+        verbose_name = 'Прогресс чтения'
+        verbose_name_plural = 'Прогресс чтения'
+
+    def __str__(self):
+        return f"{self.user.username} - {self.book.title} - {self.last_position}%"

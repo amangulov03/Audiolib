@@ -168,7 +168,12 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 3,
+
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
 }
+
 
 from datetime import timedelta
 
@@ -192,3 +197,4 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [ 'https://www.googleapis.com/auth/userinfo.em
     'https://www.googleapis.com/auth/userinfo.profile', ]
 
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+
