@@ -11,6 +11,7 @@ class GenreSerializer(serializers.ModelSerializer):
 class ReadingProgressSerializer(serializers.ModelSerializer):
     book_title = serializers.CharField(source='book.title', read_only=True)
     book_author = serializers.CharField(source='book.author', read_only=True)
+    completion_percentage = serializers.SerializerMethodField()  # 👈 исправление
     
     class Meta:
         model = ReadingProgress
@@ -20,6 +21,12 @@ class ReadingProgressSerializer(serializers.ModelSerializer):
             'updated_at', 'completion_percentage'
         ]
         read_only_fields = ['user', 'updated_at', 'completion_percentage']
+
+    def get_completion_percentage(self, obj):
+        """Вычисление процента завершения"""
+        if obj.book and obj.book.total_pages:
+            return round((obj.last_page / obj.book.total_pages) * 100, 2)
+        return None
 
 class BookListSerializer(serializers.ModelSerializer):
     """Упрощенный сериализатор для списка книг"""
