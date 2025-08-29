@@ -10,10 +10,11 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         user = self.context['request'].user
-        book = self.context['view'].kwargs['book_id']
-        if Review.objects.filter(user=user, book_id=book).exists():
+        book_id = self.context['view'].kwargs.get('book_id')
+        if book_id and Review.objects.filter(user=user, book_id=book_id).exists():
             raise ValidationError("Вы уже оставили отзыв на эту книгу")
         return data
+
 
     def to_representation(self, instance):
         repr =   super().to_representation(instance)
